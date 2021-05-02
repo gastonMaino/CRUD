@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+    <link rel="stylesheet" href="/fetch-api/styles.css">
+</head>
+<body>
+    <main id="main">
+        <form action="#" id="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+            <label for="lastname">Lastname:</label>
+            <input type="text" id="lastname">
+            <label for="country">Country:</label>
+            <select name="country" id="country">
+                <option selected disabled hidden>seleccionar</option>
+                <option value="argentina">Argentina</option>
+                <option value="chile">Chile</option>
+                <option value="brazil">Brazil</option>
+                <option value="colombia">Colombia</option>
+            </select>
+            <button type="submit" id="buttonadd">send</button>
+            <button type="submit" id="buttonupdate" class="button--hide">edit</button>
+        </form>
+        
+        <ul id="list"></ul>
+    </main>
+
+    <script src="/fetch-api/scripts.js"></script>
+</body>
+</html>
