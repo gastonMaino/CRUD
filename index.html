@@ -8,25 +8,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main id="main">
-        <form action="#" id="form">
-            <label for="name">Name:</label>
-            <input type="text" id="name">
-            <label for="lastname">Lastname:</label>
-            <input type="text" id="lastname">
-            <label for="country">Country:</label>
-            <select name="country" id="country">
-                <option selected disabled hidden>seleccionar</option>
-                <option value="argentina">Argentina</option>
-                <option value="chile">Chile</option>
-                <option value="brazil">Brazil</option>
-                <option value="colombia">Colombia</option>
-            </select>
-            <button type="submit" id="buttonadd">send</button>
-            <button type="submit" id="buttonupdate" class="button--hide">edit</button>
+    <main id="main" class="main">
+        <h1 class="title">CRUD</h1>
+        <form action="#" id="form" class="form">
+           <div class="names">
+                <label for="name">Name:</label>
+                <input type="text" id="name">
+                <label for="lastname">Lastname:</label>
+                <input type="text" id="lastname">
+           </div>
+            <div class="select">
+                <label for="country">Country:</label>
+                <select name="country" id="country">
+                    <option selected disabled hidden>seleccionar</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="chile">Chile</option>
+                    <option value="brazil">Brazil</option>
+                    <option value="colombia">Colombia</option>
+                </select>
+            </div>
+            <button type="submit" class="buttons" id="buttonadd" data-id="">send</button>
         </form>
+        <button id="buttonupdate" class="buttons button--hide">edit</button>
         
-        <ul id="list"></ul>
+        <ul id="list" class="list"></ul>
+        <!-- <button id="buttonupdate" class="buttons button-update">Update list</button> -->
     </main>
 
     <script src="scripts.js"></script>

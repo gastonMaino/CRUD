@@ -1,20 +1,96 @@
-.button {
-  text-decoration: none;
-  color: #ffffff;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 2px;
+body{
+  display: flex;
+  flex-direction: column;
+  background-color: palegoldenrod;
+  font-size: 16px;
+  min-height: 100vh;
+  color: bisque;
+}
+
+.main{
+  margin: auto;
+  background-color: gray;
+  padding: 5rem;
+  width: 70%;
+  height: 70%;
+}
+
+.title{
+  margin-top: 0;
+}
+
+.form, .names{
+  display: flex;
+  flex-direction: column;
+}
+
+.names{
+  align-items: center;
+}
+
+.names input{
   margin: 10px;
+  background: none;
+  border: 2px solid bisque;
 }
 
-.button--delete {
-  background-color: #ff0000;
+.select{
+  text-align: center;
 }
 
-.button--edit {
-  background-color: #008000;
+.select label, .select select{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons{
+  width: 80px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: bisque;
+  margin: auto;
+  padding: auto;
 }
 
 .button--hide{
   display: none;
+}
+
+.list{
+  list-style: none;
+  padding-left: 0;
+}
+
+.list li{
+  text-transform: uppercase;
+  margin-top: 8px;
+  padding-left: 5px;
+  border-bottom: 1px solid #000;
+}
+
+.list li:last-child{
+  border: none;
+}
+
+/* .button-update{
+  width: 130px;
+  margin-bottom: 0;
+} */
+
+.button{
+  padding: 1px 6px;
+  text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.button--edit{
+  background-color: green;
+}
+
+.button--delete{
+  background-color: red;
 }

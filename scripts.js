@@ -2,7 +2,9 @@ const form = document.getElementById('form')
 const main = document.getElementById('main')
 const buttonUpdate = document.getElementById('buttonupdate')
 const buttonAdd = document.getElementById('buttonadd')
+
 let users = []
+let idDelete;
 
 const getUser = (id) => {
     id = id.substring(id.lastIndexOf('-') + 1)
@@ -13,17 +15,14 @@ const getUser = (id) => {
     form.lastname.value = user.apellido
     form.country.value = user.pais
 
-    form.buttonadd.dataset.id = id;
+    buttonUpdate.dataset.id = id
 
-    return id
+    idDelete = id
 }
 
 const deleteData = (id) => {
-    id = getUser(id)
-    const data = {
-        id: id
-    }
-    fetch(`https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios/${data.id}}`, {
+    getUser(id)
+    fetch(`https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios/${idDelete}`, {
         method: 'DELETE',
     })
         .then((response) => response.json())
@@ -40,11 +39,6 @@ const getList = () => {
         const itemList = document.createElement('LI')
         itemList.id = `id-${index}`
         itemList.textContent = `Name: ${user.nombre ? user.nombre : 'null'}  - Lastname: ${user.apellido ? user.apellido : 'null'} - Country: ${user.pais ? user.pais : 'null'} `
-
-        const checkOption = document.createElement('INPUT')
-        checkOption.setAttribute('type', 'checkbox')
-        itemList.appendChild(checkOption)
-
 
         const buttonEdit = document.createElement('A')
         buttonEdit.classList.add('button', 'button--edit')
@@ -84,22 +78,22 @@ const resetForm = () => {
 
 const updateData = () => {
     const data = {
-        id: form.button.dataset.id,
+        id: buttonUpdate.dataset.id,
         nombre: form.name.value,
         apellido: form.lastname.value,
         pais: form.country.value
     }
     fetch(`https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios/${data.id}`, {
         method: 'PUT',
-        body: JSON.stringify(data),
         headers: {
             "content-type": "application/json"
-        }
+        },
+        body: JSON.stringify(data)
     })
         .then((response) => response.json())
         .then((data) => {
-            refresh()
             resetForm()
+            refresh()
         })
         .catch((err) => console.log(`Error ${err}`))
 
@@ -108,21 +102,7 @@ const updateData = () => {
 
 }
 
-main.addEventListener('click', (e) => {
-    if (e.target.id.indexOf('edit-user') !== -1) {
-        const id = getUser(e.target.id)
-        buttonUpdate.classList.remove('button--hide')
-        buttonAdd.classList.add('button--hide')
-    } else if (e.target.id.indexOf('delete-user') !== -1) {
-        deleteData(e.target.id)
-
-    } else if (e.target.id == 'button-update') {
-        updateData()
-    }
-})
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
+const sendData = () => {
     const data = {
         nombre: form.name.value,
         apellido: form.lastname.value,
@@ -141,4 +121,24 @@ form.addEventListener('submit', (e) => {
             resetForm()
         })
         .catch((err) => console.log(`Error ${err}`))
+}
+
+
+main.addEventListener('click', (e) => {
+    if (e.target.id.indexOf('edit-user') !== -1) {
+        getUser(e.target.id)
+        buttonUpdate.classList.remove('button--hide')
+        buttonAdd.classList.add('button--hide')
+    } else if (e.target.id.indexOf('delete-user') !== -1) {
+        deleteData(e.target.id)
+
+    } else if (e.target.id == 'buttonupdate') {
+        updateData()
+    }
 })
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    sendData()
+})
+
